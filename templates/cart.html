@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Foody - Organic Food Website Template</title>
+
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <style>
+        /* Popup styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 300px; /* Could be more or less, depending on screen size */
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Button styles */
+        .modal-content button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            margin: 10px 0;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Different colors for each payment method */
+        .modal-content button:nth-child(3) {
+            background-color: #007bff;
+        }
+
+        .modal-content button:nth-child(3):hover {
+            background-color: #0056b3;
+        }
+
+        .modal-content button:nth-child(4) {
+            background-color: #ffc107;
+        }
+
+        .modal-content button:nth-child(4):hover {
+            background-color: #e0a800;
+        }
+
+        .modal-content button:nth-child(5) {
+            background-color: #17a2b8;
+        }
+
+        .modal-content button:nth-child(5):hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div style="margin-bottom: 3rem"></div>
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+                <h1 class="fw-bold text-primary m-0">F<span class="text-secondary">oo</span>dy</h1>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="index" class="nav-item nav-link active">Home</a>
+                    <a href="product" class="nav-item nav-link">Products</a>
+                    <a href="aboutus" class="nav-item nav-link">About Us</a>
+                    <a href="/" class="nav-item nav-link">Logout</a>
+                </div>
+                <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <small class="fa fa-user text-body"></small>
+                </a>
+                <a class="btn-sm-square bg-white rounded-circle ms-3" href="cart">
+                    <small class="fa fa-shopping-bag text-body"></small>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Cart Page Content Start -->
+    <div class="container mt-5 pt-5">
+       <center><h1>Your Cart</h1></center>
+        {% if cart %}
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set total = 0 %}
+                    {% for item in cart %}
+                        <tr>
+                            <td>{{ item['name'] }}</td>
+                            <td>{{ item['price'] }}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm" onclick="openModal('{{ item['id']}}')">Order Now</button>
+                                <a href="{{ url_for('cancel_item', item_id=item['id']) }}" class="btn btn-danger btn-sm">Cancel</a>
+                            </td>
+                        </tr>
+                        {% if item['price'] is not none %}
+                            {% set total = total + item['price'] | float %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <p class="fw-bold">Total: ${{ '%.2f' | format(total) }}</p> -->
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+        <a href="{{ url_for('product_list') }}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+    <!-- Cart Page Content End -->
+
+    <!-- Popup Modal for Payment -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Select Payment Method</h2>
+            <button onclick="placeOrder('cash_on_delivery')">Cash on Delivery</button>
+            <button onclick="placeOrder('credit_card')">Credit Card</button>
+            <button onclick="placeOrder('debit_card')">Debit Card</button>
+            <button onclick="placeOrder('upi')">UPI</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(itemId) {
+            // Store the item ID in the modal for later use
+            sessionStorage.setItem('itemToOrder', itemId);
+            document.getElementById('paymentModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = "none";
+        }
+
+        function placeOrder(paymentMethod) {
+            const itemId = sessionStorage.getItem('itemToOrder');
+            if (paymentMethod === 'cash_on_delivery') {
+                window.location.href = `/order_item/${itemId}`; // Redirect to order route
+            }
+            closeModal();
+        }
+
+        // Close modal if clicked outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
