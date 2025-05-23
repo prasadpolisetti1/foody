@@ -58,11 +58,11 @@ python app.py
 Open http://localhost:5000 in your browser.
 
 ### 📂Project Structure 
-supermarket/
-├── static/              # CSS, JS, images
-├── templates/           # HTML templates
-├── app.py               # Flask application
-├── requirements.txt     # Project dependencies
+supermarket/<br>
+├── static/              # CSS, JS, images<br>
+├── templates/           # HTML templates<br>
+├── app.py               # Flask application<br>
+├── requirements.txt     # Project dependencies<br>
 └── README.md            # Project overview
 
 ## 📸 Screenshots
