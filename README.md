@@ -53,11 +53,11 @@ pip install -r requirements.txt
 The app connects to the default MongoDB URI:
 mongodb://localhost:27017/
 
-▶️<b> Run the App</b>
+### ▶️ Run the App
 python app.py
 Open http://localhost:5000 in your browser.
 
-📂<b> Project Structure</b>
+### 📂Project Structure 
 supermarket/
 ├── static/              # CSS, JS, images
 ├── templates/           # HTML templates
@@ -91,5 +91,6 @@ supermarket/
 ### 👤 Profile
 ![Profile](https://github.com/user-attachments/assets/4106a4d0-2118-4683-92fa-10d4b9ba7263)
 
+### 🤝 Contributing
 Pull requests are welcome!
 If you find a bug or have a feature request, open an issue first to discuss it.
