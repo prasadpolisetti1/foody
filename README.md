@@ -37,10 +37,11 @@
 ## 🧑‍💻 Getting Started
 
 ### 📁 Clone the Repository
-```bash
+bash
 git clone https://github.com/yourusername/supermarket.git
 cd supermarket
 
+---
 ###🐍Create a Virtual Environment
 python -m venv venv
 source venv/bin/activate     # Windows: venv\Scripts\activate
