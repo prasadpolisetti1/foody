@@ -59,10 +59,15 @@ Open http://localhost:5000 in your browser.
 
 ### 📂Project Structure 
 supermarket/
+
 ├── static/              # CSS, JS, images
+
 ├── templates/           # HTML templates
+
 ├── app.py               # Flask application
+
 ├── requirements.txt     # Project dependencies
+
 └── README.md            # Project overview
 
 ## 📸 Screenshots
