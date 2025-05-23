@@ -38,7 +38,7 @@
 
 ### 📁 Clone the Repository
 bash
-git clone https://github.com/yourusername/supermarket.git
+git clone https://github.com/prasadpolisetti1/foody.git
 cd supermarket
 
 ---
@@ -86,7 +86,7 @@ supermarket/
 ![Admin Home](https://github.com/user-attachments/assets/05dcfc79-b13a-484e-a265-cd943b2f84a1)
 
 ### ➕ Admin Add New Products
-![Admin Add](https://github.com/user-attachments/assets/45911006-053f-4044-9c8b-bd1f31c2a2f7)
+![Admin Add](https://github.com/user-attachments/assets/96bee237-ff13-4753-b266-b838089c4600)
 
 ### 👤 Profile
 ![Profile](https://github.com/user-attachments/assets/4106a4d0-2118-4683-92fa-10d4b9ba7263)
