@@ -42,14 +42,14 @@ git clone https://github.com/yourusername/supermarket.git
 cd supermarket
 
 ---
-###🐍Create a Virtual Environment
+### 🐍Create a Virtual Environment
 python -m venv venv
 source venv/bin/activate     # Windows: venv\Scripts\activate
 
-📦<b> Install Dependencies</b>
+### 📦 Install Dependencies
 pip install -r requirements.txt
 
-🗄️<b> Make Sure MongoDB is Running Locally</b>
+### 🗄️ Make Sure MongoDB is Running Locally
 The app connects to the default MongoDB URI:
 mongodb://localhost:27017/
 
