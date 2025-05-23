@@ -57,7 +57,7 @@ mongodb://localhost:27017/
 python app.py
 Open http://localhost:5000 in your browser.
 
-📂Project Structure 
+### 📂Project Structure 
 supermarket/
 ├── static/              # CSS, JS, images
 ├── templates/           # HTML templates
