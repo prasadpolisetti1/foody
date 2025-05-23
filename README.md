@@ -41,7 +41,7 @@
 git clone https://github.com/yourusername/supermarket.git
 cd supermarket
 
-🐍<b> Create a Virtual Environment</b>
+###🐍Create a Virtual Environment
 python -m venv venv
 source venv/bin/activate     # Windows: venv\Scripts\activate
 
