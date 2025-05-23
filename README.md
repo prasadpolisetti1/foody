@@ -1,6 +1,6 @@
-<h1 align="center">🛒 Foody Flask App</h1>
+<h1>🛒 Foody Flask App</h1>
 
-<p align="center">
+<p >
   A modern, full-featured supermarket web application built with <strong>Flask</strong> and <strong>MongoDB</strong>.
 </p>
 
